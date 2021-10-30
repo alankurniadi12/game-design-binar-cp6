@@ -19,7 +19,7 @@ class SplashScreen : AppCompatActivity() {
         handler = Handler()
         handler.postDelayed({
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LandingPageActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000L) //3000 L = 3 detik
