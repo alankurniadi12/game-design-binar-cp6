@@ -1,8 +1,12 @@
 package com.binar.gamedesignbinarcp6.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.binar.gamedesignbinarcp6.MainActivity
 import com.binar.gamedesignbinarcp6.R
+import com.binar.gamedesignbinarcp6.database.Users
 import com.binar.gamedesignbinarcp6.database.UsersRoomDatabase
 import com.binar.gamedesignbinarcp6.databinding.ActivityLoginBinding
 import kotlinx.coroutines.GlobalScope
@@ -27,13 +31,29 @@ class LoginActivity : AppCompatActivity() {
             val inputNumber = binding.edtNohp.text.toString()
 
             GlobalScope.async {
-                val dataNameReady = mDB?.UsersDao()?.getUsersByName(inputName)
-                val dataNumberReady = mDB?.UsersDao()?.getUsersByNumber(inputNumber)
-                if (dataNameReady != null && dataNumberReady != null) {
-
+                val dataReady = mDB?.UsersDao()?.getAllUsers()
+                runOnUiThread {
+                    if (dataReady != null) {
+                        for (data in dataReady) {
+                            when {
+                                inputName != data.name -> {
+                                    Toast.makeText(this@LoginActivity, "$inputName\nTIDAK TERDAFTAR!!", Toast.LENGTH_SHORT).show()
+                                }
+                                inputNumber != data.number -> {
+                                    Toast.makeText(this@LoginActivity, "NUMBER SALAH!!", Toast.LENGTH_SHORT).show()
+                                }
+                                else -> {
+                                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                }
+                            }
+                        }
+                    }
                 }
             }
+        }
 
+        binding.tvDontAlreadyAccount.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }
