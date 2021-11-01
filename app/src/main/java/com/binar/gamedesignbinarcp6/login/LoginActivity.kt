@@ -1,11 +1,10 @@
 package com.binar.gamedesignbinarcp6.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.binar.gamedesignbinarcp6.MainActivity
-import com.binar.gamedesignbinarcp6.R
 import com.binar.gamedesignbinarcp6.database.Users
 import com.binar.gamedesignbinarcp6.database.UsersRoomDatabase
 import com.binar.gamedesignbinarcp6.databinding.ActivityLoginBinding
@@ -14,8 +13,11 @@ import kotlinx.coroutines.async
 
 class LoginActivity : AppCompatActivity() {
 
+    private val TAG = LoginActivity::class.java.simpleName
     private lateinit var binding: ActivityLoginBinding
     var mDB: UsersRoomDatabase? = null
+    private lateinit var data: List<Users>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,34 +28,32 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        binding.btnLogin.setOnClickListener {
-            val inputName = binding.edtUsername.text.toString()
-            val inputNumber = binding.edtNohp.text.toString()
-
-            GlobalScope.async {
-                val dataReady = mDB?.UsersDao()?.getAllUsers()
+        GlobalScope.async {
+            data = mDB?.UsersDao()?.getAllUsers()!!
+            binding.btnLogin.setOnClickListener {
+                var nameInDb: String? = null
+                var numberInDb: String? = null
+                val inputName = binding.edtUsername.text.toString()
+                val inputNumber = binding.edtNohp.text.toString()
                 runOnUiThread {
-                    if (dataReady != null) {
-                        for (data in dataReady) {
-                            when {
-                                inputName != data.name -> {
-                                    Toast.makeText(this@LoginActivity, "$inputName\nTIDAK TERDAFTAR!!", Toast.LENGTH_SHORT).show()
-                                }
-                                inputNumber != data.number -> {
-                                    Toast.makeText(this@LoginActivity, "NUMBER SALAH!!", Toast.LENGTH_SHORT).show()
-                                }
-                                else -> {
-                                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                                }
-                            }
-                        }
+                    for (mData in data) {
+                        if (inputName == mData.name) nameInDb = mData.name
+                        if (inputNumber == mData.number) numberInDb = mData.number
+                    }
+                    if (nameInDb != null && numberInDb != null) {
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "PERIKSA KEMBALI NAMA DAN NUMBER!!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
-        }
-
-        binding.tvDontAlreadyAccount.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            binding.tvDontAlreadyAccount.setOnClickListener {
+                startActivity(Intent(applicationContext, RegisterActivity::class.java))
+            }
         }
     }
 }
