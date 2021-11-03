@@ -11,10 +11,17 @@
         <entry key="..\:/Project/BinarAcademy/GameDesignBinarCp6/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2635416666666667" />
         <entry key="..\:/Project/BinarAcademy/GameDesignBinarCp6/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.2635416666666667" />
         <entry key="..\:/Project/BinarAcademy/GameDesignBinarCp6/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.2635416666666667" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/drawable/background.xml" value="0.15989583333333332" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/drawable/ic_baseline_arrow_right_24.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/layout/activity_landing_page.xml" value="0.14375" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/layout/activity_main.xml" value="0.14375" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/layout/activity_second.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/layout/activity_splash_screen.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/layout/fragment_second.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Firzan Ananta/Desktop/New folder/game-design-binar-cp6/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22407407407407406" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
