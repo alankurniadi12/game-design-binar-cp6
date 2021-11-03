@@ -14,13 +14,16 @@
             android:exported="true" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".login.RegisterActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".SecondActivity"
+            android:exported="true"/>
         <activity
             android:name=".SplashScreen"
             android:exported="true">

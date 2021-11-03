@@ -41,11 +41,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/comic_relief"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,12 +56,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/comic_relief"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -68,7 +72,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="@+id/tvP1"
+        app:layout_constraintEnd_toStartOf="@+id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvP1"
         app:srcCompat="@drawable/batu" />
@@ -80,7 +84,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvP2"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toBottomOf="@+id/tvP2"
         app:srcCompat="@drawable/batu" />
 
@@ -90,7 +94,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="@+id/tvP1"
+        app:layout_constraintEnd_toStartOf="@+id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivB1"
         app:srcCompat="@drawable/gunting" />
@@ -102,7 +106,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvP2"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toBottomOf="@+id/ivB2"
         app:srcCompat="@drawable/gunting" />
 
@@ -112,7 +116,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="@+id/tvP1"
+        app:layout_constraintEnd_toStartOf="@+id/ivLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivG1"
         app:srcCompat="@drawable/kertas" />
@@ -124,7 +128,7 @@
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvP2"
+        app:layout_constraintStart_toEndOf="@+id/ivLogo"
         app:layout_constraintTop_toBottomOf="@+id/ivG2"
         app:srcCompat="@drawable/kertas" />
 
