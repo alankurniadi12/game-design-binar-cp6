@@ -9,10 +9,13 @@ import com.binar.gamedesignbinarcp6.database.Users
 import com.binar.gamedesignbinarcp6.database.UsersRoomDatabase
 import com.binar.gamedesignbinarcp6.databinding.ActivityLoginBinding
 import com.binar.gamedesignbinarcp6.helper.LoginPref
+import com.binar.gamedesignbinarcp6.mvp.MainPresenter
+import com.binar.gamedesignbinarcp6.mvp.MainPresenterImpl
+import com.binar.gamedesignbinarcp6.mvp.MainView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), MainView {
 
     private val TAG = LoginActivity::class.java.simpleName
     private lateinit var binding: ActivityLoginBinding
@@ -20,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var data: List<Users>
 
     private lateinit var loginPref: LoginPref
+    private lateinit var mainPresenterImpl: MainPresenterImpl
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +31,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loginPref = LoginPref(this)
-        mDB = UsersRoomDatabase.getInstance(this)
+        mainPresenterImpl = MainPresenterImpl(this, this)
+        mDB = UsersRoomDatabase.builDataBase(this)
 
         GlobalScope.async {
             data = mDB?.UsersDao()?.getAllUsers()!!
@@ -63,5 +68,8 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(applicationContext, RegisterActivity::class.java))
             }
         }
+    }
+
+    override fun onGetUsers(users: List<Users>) {
     }
 }

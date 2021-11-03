@@ -2,28 +2,32 @@ package com.binar.gamedesignbinarcp6.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.binar.gamedesignbinarcp6.database.Users
 import com.binar.gamedesignbinarcp6.database.UsersRoomDatabase
 import com.binar.gamedesignbinarcp6.databinding.ActivityRegisterBinding
-import kotlinx.coroutines.DelicateCoroutinesApi
+import com.binar.gamedesignbinarcp6.mvp.MainPresenterImpl
+import com.binar.gamedesignbinarcp6.mvp.MainView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), MainView {
 
     private lateinit var binding: ActivityRegisterBinding
     var mDB: UsersRoomDatabase? = null
+    private lateinit var mainPresenterImpl: MainPresenterImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mDB = UsersRoomDatabase.getInstance(this)
+        mDB = UsersRoomDatabase.builDataBase(this)
+        mainPresenterImpl = MainPresenterImpl(this, this)
+
 
         binding.btnSignUp.setOnClickListener {
+
             val name = binding.edtUsername.text.toString()
             val email = binding.edtEmail.text.toString()
             val number = binding.edtNohp.text.toString()
@@ -31,7 +35,8 @@ class RegisterActivity : AppCompatActivity() {
 
             if (name.isNotEmpty() && email.isNotEmpty() && number.isNotEmpty()) {
                 GlobalScope.async {
-                    mDB?.UsersDao()?.insert(users)
+
+                    mainPresenterImpl.addUser(users)
                     runOnUiThread {
                         Toast.makeText(this@RegisterActivity, "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
@@ -44,6 +49,9 @@ class RegisterActivity : AppCompatActivity() {
         binding.tvAlreadyAccount.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+    }
+
+    override fun onGetUsers(users: List<Users>) {
     }
 
 }
