@@ -2,6 +2,7 @@ package com.binar.gamedesignbinarcp6.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.binar.gamedesignbinarcp6.database.Users
@@ -21,41 +22,28 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         mDB = UsersRoomDatabase.getInstance(this)
-    }
 
-    @DelicateCoroutinesApi
-    override fun onStart() {
-        super.onStart()
         binding.btnSignUp.setOnClickListener {
-            val users = Users(
-                null,
-                binding.edtUsername.text.toString(),
-                binding.edtEmail.text.toString(),
-                binding.edtNohp.text.toString()
-            )
+            val name = binding.edtUsername.text.toString()
+            val email = binding.edtEmail.text.toString()
+            val number = binding.edtNohp.text.toString()
+            val users = Users(null, name, email, number)
 
-            GlobalScope.async {
-                val result = mDB?.UsersDao()?.insert(users)
-                runOnUiThread {
-                    if (result != null) {
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            "Data Berhasil ditambahkan",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            "Data Gagal ditambahkan",
-                            Toast.LENGTH_SHORT
-                        ).show()
+            if (name.isNotEmpty() && email.isNotEmpty() && number.isNotEmpty()) {
+                GlobalScope.async {
+                    mDB?.UsersDao()?.insert(users)
+                    runOnUiThread {
+                        Toast.makeText(this@RegisterActivity, "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     }
-                    finish()
                 }
+            } else{
+                Toast.makeText(this@RegisterActivity, "Lengkapi Form", Toast.LENGTH_SHORT).show()
             }
         }
         binding.tvAlreadyAccount.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }
+
 }

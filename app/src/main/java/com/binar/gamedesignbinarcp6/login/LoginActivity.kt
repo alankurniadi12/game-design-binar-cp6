@@ -8,6 +8,7 @@ import com.binar.gamedesignbinarcp6.MainActivity
 import com.binar.gamedesignbinarcp6.database.Users
 import com.binar.gamedesignbinarcp6.database.UsersRoomDatabase
 import com.binar.gamedesignbinarcp6.databinding.ActivityLoginBinding
+import com.binar.gamedesignbinarcp6.helper.LoginPref
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
@@ -18,16 +19,16 @@ class LoginActivity : AppCompatActivity() {
     var mDB: UsersRoomDatabase? = null
     private lateinit var data: List<Users>
 
+    private lateinit var loginPref: LoginPref
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        loginPref = LoginPref(this)
         mDB = UsersRoomDatabase.getInstance(this)
-    }
 
-    override fun onStart() {
-        super.onStart()
         GlobalScope.async {
             data = mDB?.UsersDao()?.getAllUsers()!!
             binding.btnLogin.setOnClickListener {
@@ -35,21 +36,28 @@ class LoginActivity : AppCompatActivity() {
                 var numberInDb: String? = null
                 val inputName = binding.edtUsername.text.toString()
                 val inputNumber = binding.edtNohp.text.toString()
-                runOnUiThread {
-                    for (mData in data) {
-                        if (inputName == mData.name) nameInDb = mData.name
-                        if (inputNumber == mData.number) numberInDb = mData.number
+
+                if (inputName.isNotEmpty() && inputNumber.isNotEmpty()) {
+                    runOnUiThread {
+                        for (mData in data) {
+                            if (inputName == mData.name) nameInDb = mData.name
+                            if (inputNumber == mData.number) numberInDb = mData.number
+                        }
+                        if (nameInDb != null && numberInDb != null) {
+                            loginPref.setLoginPref()
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "PERIKSA KEMBALI NAMA DAN NUMBER!!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                    if (nameInDb != null && numberInDb != null) {
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    } else {
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "PERIKSA KEMBALI NAMA DAN NUMBER!!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                } else {
+                    Toast.makeText(this@LoginActivity, "Lengkapi Form", Toast.LENGTH_SHORT).show()
                 }
+
             }
             binding.tvDontAlreadyAccount.setOnClickListener {
                 startActivity(Intent(applicationContext, RegisterActivity::class.java))
