@@ -10,9 +10,10 @@ class ViewPagerAdapter(
 ) : FragmentStateAdapter(fa) {
     private val dataFragments = mutableListOf(
         SecondFragment.newInstance("Bermain suit melawan sesama pemain."),
-        SecondFragment.newInstance("Bermain suit melawan komputer.")
+        SecondFragment.newInstance("Bermain suit melawan komputer."),
+        SecondFragment.newInstance("Silakan Login Dahulu")
     )
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 3
     override fun createFragment(position: Int): Fragment = dataFragments[position]
 }

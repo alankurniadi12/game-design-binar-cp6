@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".LandingPageActivity">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -21,7 +20,7 @@
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:dotsColor="#98C2EF"
+        app:dotsColor="#4863A0"
         app:dotsCornerRadius="8dp"
         app:dotsSize="16dp"
         app:dotsSpacing="4dp"
@@ -40,17 +39,17 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="100dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/butt_orange"
-        android:text="@string/next"
-        android:textColor="@color/white"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_baseline_arrow_right_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/dots_indicator"
-        app:layout_constraintTop_toBottomOf="@id/gl1" />
+        app:layout_constraintTop_toBottomOf="@id/gl1"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

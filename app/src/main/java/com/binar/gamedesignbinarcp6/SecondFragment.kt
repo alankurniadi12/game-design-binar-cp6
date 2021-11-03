@@ -33,13 +33,18 @@ class SecondFragment : Fragment() {
         val title by lazy{view.findViewById<TextView>(R.id.title)}
         val image1 by lazy{view.findViewById<ImageView>(R.id.image1)}
         val image2 by lazy{view.findViewById<ImageView>(R.id.image2)}
+        val image3 by lazy{view.findViewById<ImageView>(R.id.image3)}
         title.text = param1
+        //fragment
         when(param1){
             "Bermain suit melawan sesama pemain."->{
                 image1.visibility = View.VISIBLE
             }
             "Bermain suit melawan komputer."->{
                 image2.visibility = View.VISIBLE
+            }
+            "Silakan Login Dahulu"->{
+                image3.visibility = View.VISIBLE
             }
         }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
+import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
@@ -14,16 +15,15 @@ class LandingPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_landing_page)
         val viewpager2 by lazy {this.findViewById<ViewPager2>(R.id.viewpager2)}
         val dotsIndicator by lazy {this.findViewById<DotsIndicator>(R.id.dots_indicator)}
-        val btnNext by lazy { this.findViewById<Button>(R.id.btnNext) }
-        val viewPagerAdapter = ViewPagerAdapter(this) {
-            name = it.toString()
-        }
+        val btnNext by lazy { this.findViewById<ImageView>(R.id.btnNext) }
+        val viewPagerAdapter = ViewPagerAdapter(this) { name = it.toString() }
+
         viewpager2.adapter = viewPagerAdapter
 
         dotsIndicator.setViewPager2(viewpager2)
 
         btnNext.setOnClickListener {
-            if(viewpager2.currentItem < 1){
+            if(viewpager2.currentItem < 2){
                 viewpager2.currentItem = viewpager2.currentItem.plus(1)
             }
             else{
