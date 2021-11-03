@@ -31,6 +31,10 @@ class SecondActivity : AppCompatActivity() {
 
         binding.ivReset.setOnClickListener {
             btnReseter()
+            when (mode) {
+                "pvp" -> btnEnablerAll()
+                "vscom" -> btnEnablerP1()
+            }
         }
 
         //TODO buat dialog tombol home (ivHome) dan tombol X (ivClose)

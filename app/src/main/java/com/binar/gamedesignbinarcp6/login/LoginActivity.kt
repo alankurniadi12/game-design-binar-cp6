@@ -44,8 +44,11 @@ class LoginActivity : AppCompatActivity() {
                             if (inputNumber == mData.number) numberInDb = mData.number
                         }
                         if (nameInDb != null && numberInDb != null) {
-                            loginPref.setLoginPref()
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            val nama = inputName
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
+                                putExtra("nama", nama)
+                            }
+                            startActivity(intent)
                         } else {
                             Toast.makeText(
                                 this@LoginActivity,
