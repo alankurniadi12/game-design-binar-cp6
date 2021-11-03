@@ -10,7 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GameDesignBinarCp6">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.ListUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LandingPageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
