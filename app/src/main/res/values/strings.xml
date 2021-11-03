@@ -53,4 +53,14 @@
     <string name="nama_teman">Nama :</string>
     <string name="email_teman">Email :</string>
     <string name="edit">edit</string>
+
+    <string name="computer_name">COM</string>
+    <string name="description_1">Bermain suit melawan sesama Pemain</string>
+    <string name="description_2">Bermain suit melawan Komputer</string>
+    <string name="toast_masukan_nama">Masukan nama Anda</string>
+    <string name="tuliskan_nama_mu">Tuliskan nama mu dibawah</string>
+    <string name="hint_masukan_nama">Masukan nama</string>
+    <string name="btn_text_main_lagi">Main Lagi</string>
+    <string name="dialog_title_hasil_permainan">Hasil Permainan</string>
+    <string name="btn_text_kembali_ke_menu">Kembali Ke Menu</string>
 </resources>

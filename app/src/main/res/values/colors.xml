@@ -145,4 +145,9 @@
     <color name="MediumBlue">#0000CD</color>
     <color name="DarkBlue">#00008B</color>
     <color name="Navy">#000080</color>
+    <color name="bg_choice">#70757575</color>
+    <color name="text_color">#70002EA3</color>
+
+    <color name="purple">#A05FEF</color>
+    <color name="yellow">#FF9800</color>
 </resources>

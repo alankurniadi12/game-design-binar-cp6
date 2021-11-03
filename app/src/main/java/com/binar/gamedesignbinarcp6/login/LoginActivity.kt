@@ -2,16 +2,18 @@ package com.binar.gamedesignbinarcp6.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.binar.gamedesignbinarcp6.MainActivity
+import com.binar.gamedesignbinarcp6.ui.MainActivity
 import com.binar.gamedesignbinarcp6.database.Users
 import com.binar.gamedesignbinarcp6.database.UsersRoomDatabase
 import com.binar.gamedesignbinarcp6.databinding.ActivityLoginBinding
 import com.binar.gamedesignbinarcp6.helper.LoginPref
-import com.binar.gamedesignbinarcp6.mvp.MainPresenter
 import com.binar.gamedesignbinarcp6.mvp.MainPresenterImpl
 import com.binar.gamedesignbinarcp6.mvp.MainView
+import com.binar.gamedesignbinarcp6.ui.MenuActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 
@@ -21,6 +23,8 @@ class LoginActivity : AppCompatActivity(), MainView {
     private lateinit var binding: ActivityLoginBinding
     var mDB: UsersRoomDatabase? = null
     private lateinit var data: List<Users>
+    private var backToast: Toast? = null
+    private var backPress: Long = 0
 
     private lateinit var loginPref: LoginPref
     private lateinit var mainPresenterImpl: MainPresenterImpl
@@ -50,7 +54,11 @@ class LoginActivity : AppCompatActivity(), MainView {
                         }
                         if (nameInDb != null && numberInDb != null) {
                             loginPref.setLoginPref()
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            val intent = Intent(this@LoginActivity, MenuActivity::class.java)
+                            intent.putExtra(MenuActivity.KEY_NAME, inputName)
+                            Log.i(TAG, "Kirim Nama $inputName")
+                            startActivity(intent)
+                            //startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         } else {
                             Toast.makeText(
                                 this@LoginActivity,
@@ -68,6 +76,22 @@ class LoginActivity : AppCompatActivity(), MainView {
                 startActivity(Intent(applicationContext, RegisterActivity::class.java))
             }
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        backToast = Toast.makeText(this, "Press back again to exit!", Toast.LENGTH_SHORT)
+        if (backPress + 2000 > System.currentTimeMillis()) {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            backToast?.cancel()
+            return super.onKeyDown(keyCode, event)
+        } else {
+            backToast?.show()
+        }
+        backPress = System.currentTimeMillis()
+        return true
     }
 
     override fun onGetUsers(users: List<Users>) {

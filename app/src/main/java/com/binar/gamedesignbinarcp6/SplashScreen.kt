@@ -1,13 +1,13 @@
 package com.binar.gamedesignbinarcp6
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Window
 import com.binar.gamedesignbinarcp6.helper.LoginPref
+import com.binar.gamedesignbinarcp6.ui.MainActivity
 
 
 class SplashScreen : AppCompatActivity() {
