@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GameDesignBinarCp6">
         <activity
+            android:name=".ui.ListUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MenuActivity"
             android:exported="false" />
         <activity

@@ -35,7 +35,6 @@ class RegisterActivity : AppCompatActivity(), MainView {
 
             if (name.isNotEmpty() && email.isNotEmpty() && number.isNotEmpty()) {
                 GlobalScope.async {
-
                     mainPresenterImpl.addUser(users)
                     runOnUiThread {
                         Toast.makeText(this@RegisterActivity, "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show()

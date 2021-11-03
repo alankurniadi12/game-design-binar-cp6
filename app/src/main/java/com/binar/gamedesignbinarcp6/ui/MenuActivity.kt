@@ -34,6 +34,10 @@ class MenuActivity : AppCompatActivity() {
             loginPref.clearStatusLogin()
             startActivity(Intent(this, LoginActivity::class.java))
         }
+
+        binding.imgListUser.setOnClickListener {
+            startActivity(Intent(this, ListUserActivity::class.java))
+        }
     }
 
     override fun onStart() {
